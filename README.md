@@ -10,6 +10,8 @@ example:
 lolking("doublelift")
 
 output:
+
+```
 Zebuum
 8
 LMQ Tc Vasilii
@@ -44,3 +46,4 @@ Case Opened
 2
 otter
 2
+```
