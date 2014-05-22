@@ -7,8 +7,9 @@ lolking(summonerName)
 supply your summoner name and it *should* resolve your summoner ID and query your match page to find and output the people you have played with more than once in the past 10 games.
 
 example:
+```
 lolking("doublelift")
-
+```
 output:
 
 ```
