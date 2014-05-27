@@ -1,10 +1,8 @@
 import urllib2
+import json
 
-def lolking (summonerName):
-    s = "http://www.lolking.net/search?name=" + summonerName + "&region=NA"
-    resp = urllib2.urlopen(s)
-    summonerPage = resp.geturl()
-    summonerID = summonerPage.split("/")[-1]
+def lolkingID (ID):
+    summonerID = ID
     s1 = "http://www.lolking.net/summoner/na/"
     s2 = str(summonerID)
     s3 = "#matches"
@@ -13,17 +11,29 @@ def lolking (summonerName):
     data = usock.read()
     usock.close()
     # parse the data
-    ss = data.split("<a href=\"/summoner/na/")
-    ss.pop(0)
-    p = ss[0: len(ss) - 6]
-    for i in xrange(0,len(p)):
-        p[i] = p[i].split("</a>")
-        p[i] = ((p[i])[0])[10: len((p[i])[0])]
-
+    qq = data.split("var history = ")
+    qq.pop(0)
+    rr = qq[0].split(";\n")
+    ss = rr[0]
+    decoded = json.loads(ss)
+    p = []
+    for a in decoded:
+        for f in a[u'match'][u'teammates']:
+            p.append(f[u'name'])
+        for e in a[u'match'][u'opponents']:
+            p.append(e[u'name'])
     r = []
     for j in xrange(0,len(p)):
-        if(p.count(p[j]) / 2 > 1):
+        if(p.count(p[j]) > 1):
             if(r.count(p[j]) == 0):
                 print p[j]
-                print p.count(p[j]) / 2
+                print p.count(p[j])
                 r.append(p[j])
+
+def lolking (summonerName):
+    s = "http://www.lolking.net/search?name=" + summonerName + "&region=NA"
+    resp = urllib2.urlopen(s)
+    summonerPage = resp.geturl()
+    summonerID = summonerPage.split("/")[-1]
+    lolkingID(summonerID)
+   
