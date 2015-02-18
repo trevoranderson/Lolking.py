@@ -1,0 +1,14 @@
+{
+  "name": "lolking",
+  "version": "0.0.0",
+  "description": "lolking",
+  "main": "app.js",
+  "author": {
+    "name": "trevor",
+    "email": ""
+  },
+  "dependencies": {
+    "lodash": "^3.2.0",
+    "request": "^2.53.0"
+  }
+}
